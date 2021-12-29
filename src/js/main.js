@@ -5,6 +5,7 @@
 let input = document.querySelector('.js-input');
 const searchButton = document.querySelector('.js-searchButton');
 let searchResultList = document.querySelector('.searchresults');
+let favouriteSelector = document.querySelectorAll('.results') //parte 3
 //Variables globales
 const alternativeImage = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 let userInput = '';
@@ -13,7 +14,8 @@ let animeSeriesArray = [];
 
 
 
-//Empezamos con el fetch...
+
+//Empezamos con el fetch... Partes I y II
 function fetchDataAnime() {
     searchResultList.innerHTML = "";
 
@@ -29,27 +31,21 @@ function fetchDataAnime() {
                 alert("No existe esta serie");
             } else
                 for (let i = 0; i < animeSeriesArray.length; i++) {
+                    //No se me pinta la foto alternativa
                     const animeSerie = animeSeriesArray[i];
                     if (animeSerie.img_url === null) {
-                        searchResultList.innerHTML += `<article class="result"> <p>${animeSerie.title}</p><img src="${alternativeImage}"/></article>`
+                        searchResultList.innerHTML += `<article class="results"> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
 
                     } else {
 
-                        searchResultList.innerHTML += `<article class="result"> <p>${animeSerie.title}</p><img src="${animeSerie.image_url}"/></article>`
+                        searchResultList.innerHTML += `<article class="results"> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
                     }
-
-
-
-
-
-
 
 
                 }
 
-
-
         })
+
 }
 
 
@@ -60,8 +56,15 @@ function getUserInput() {
 
 
 
-//Listener
+//Listeners
 
 searchButton.addEventListener('click', fetchDataAnime);
+
+
+
+
+
+
+
 
 
