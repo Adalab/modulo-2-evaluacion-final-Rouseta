@@ -37,18 +37,18 @@ function fetchDataAnime() {
                     //No se me pinta la foto alternativa
                     const animeSerie = animeSeriesArray[i];
                     if (animeSerie.img_url === null) {
-                        searchResultList.innerHTML += `<article class="results id=${animeSerie.id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
+                        searchResultList.innerHTML += `<article class="results id=${animeSerie.mal_id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
 
                     } else {
 
-                        searchResultList.innerHTML += `<article class="results" id=${animeSerie.id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
+                        searchResultList.innerHTML += `<article class="results" id=${animeSerie.mal_id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
                     }
                     //Parte III Añado Listener al article de resultados
 
                     const favouriteSelector = document.querySelectorAll('.results')
 
                     for (const fav of favouriteSelector) {
-                        fav.addEventListener('click', global) //la función que quiero usar es global, pero no funciona
+                        fav.addEventListener('click', globalFunction)
                     }
 
                     ///Parte III. Pintar favoritos
@@ -71,23 +71,23 @@ function fetchDataAnime() {
 
         })
     //Parte III. Función manejadora  de favoritos
-    function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. FUNCIONA
+    function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. F
 
         const favouriteAnime = event.currentTarget.id;
         console.log(favouriteAnime);
 
 
     }
-    function changeColorFavourite(event) { //Función para cambiar el color al favorito FUNCIONA
+    function changeColorFavourite(event) { //Función para cambiar el color al seleccionado como favorita
 
         const favouriteAnime = event.currentTarget;
         favouriteAnime.classList.toggle('favourite')
 
     }
-    function global() { //Esta función es la que quiero usar en el listener, pero las dos funcionas juntas dan error en el listener.NO FUNCIONA
+    function globalFunction(event) { //Esta función es la que quiero uso en el listener "fav" para cambiar el color y mostrar el array con favoritos
 
-        handleFavourites();
-        changeColorFavourite();
+        handleFavourites(event);
+        changeColorFavourite(event);
 
     }
 
