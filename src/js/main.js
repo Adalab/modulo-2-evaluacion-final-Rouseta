@@ -5,11 +5,12 @@
 let input = document.querySelector('.js-input');
 const searchButton = document.querySelector('.js-searchButton');
 let searchResultList = document.querySelector('.searchresults');
-let favouriteSelector = document.querySelectorAll('.results') //parte 3
+const favouriteSelector = document.querySelectorAll('.results') //parte 3
 //Variables globales
 const alternativeImage = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 let userInput = '';
 let animeSeriesArray = [];
+let favouriteSeriesArray = [];
 
 
 
@@ -24,7 +25,7 @@ function fetchDataAnime() {
         .then((response) => response.json())
         .then((dataAnime) => {
             const animeSeriesArray = dataAnime.results;
-            console.log(animeSeriesArray)
+            //console.log(animeSeriesArray)
 
 
             if (animeSeriesArray.length === 0) {
@@ -40,25 +41,35 @@ function fetchDataAnime() {
 
                         searchResultList.innerHTML += `<article class="results"> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
                     }
+                    //Añado Listener al article de reultados
+                    const favouriteSelector = document.querySelectorAll('.results')
+
+                    for (const fav of favouriteSelector) {
+                        fav.addEventListener('click', handleFavourites)
+                    }
 
 
                 }
 
+
+
         })
+    //Esta función no me funciona y no sé dónde ponerla exactamente
+    function handleFavourites() {
+        console.log('holi');
+    }
+
 
 }
-
-
-function getUserInput() {
-    userInput = input.value;
-    console.log("User input:" + userInput);
-}
-
-
 
 //Listeners
 
 searchButton.addEventListener('click', fetchDataAnime);
+
+
+
+
+
 
 
 
