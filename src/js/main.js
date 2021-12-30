@@ -54,9 +54,13 @@ function fetchDataAnime() {
 
 
         })
-    //Esta función no me funciona y no sé dónde ponerla exactamente
-    function handleFavourites() {
-        console.log('holi');
+    //Función manejadora los favoritos
+    function handleFavourites(event) {
+        //console.log('holi');
+        const favouriteAnime = event.currentTarget;
+        console.log(favouriteAnime);
+        favouriteAnime.classList.toggle('favourite');
+
     }
 
 
