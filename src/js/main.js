@@ -26,23 +26,31 @@ function fetchDataAnime() {
 
         .then((response) => response.json())
         .then((dataAnime) => {
-            const animeSeriesArray = dataAnime.results;
-            //console.log(animeSeriesArray)
+            animeSeriesArray = dataAnime.results;
+            //console.log(animeSeriesArray);
+
+
 
 
             if (animeSeriesArray.length === 0) {
-                alert("No existe esta serie");
+                searchResultList.innerHTML += `<p class="paragraph">No existe este título. Prueba con otro</p>`
             } else
                 for (let i = 0; i < animeSeriesArray.length; i++) {
                     //No se me pinta la foto alternativa
                     const animeSerie = animeSeriesArray[i];
+
+
                     if (animeSerie.img_url === null) {
-                        searchResultList.innerHTML += `<article class="results id=${animeSerie.mal_id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
+                        searchResultList.innerHTML += `<article class="results data-id="${animeSerie.mal_id}"> <p><h3data-title="${animeSerie.title}" >${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
 
                     } else {
 
-                        searchResultList.innerHTML += `<article class="results" id=${animeSerie.mal_id}> <p><h3>${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
+                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3 data-title="${animeSerie.title}">${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
                     }
+
+
+
+
                     //Parte III Añado Listener al article de resultados
 
                     const favouriteSelector = document.querySelectorAll('.results')
@@ -51,15 +59,6 @@ function fetchDataAnime() {
                         fav.addEventListener('click', globalFunction)
                     }
 
-                    ///Parte III. Pintar favoritos
-
-                    /*for (let i = 0; i < favouriteSeriesArray.length; i++) {
-                        const favouriteSeries = favouriteSeriesArray[i]
-                        favouriteListOfAnimes.innerHTML += `<article class="results" id=${animeSerie.mal_id}> <p><h3>${favouriteSeries.title}</h3></p><img class="image" src="${favouriteSeries.image_url}"/></article>`
-
-
-
-                    }*/
 
 
 
@@ -68,22 +67,50 @@ function fetchDataAnime() {
                 }
 
 
+        }
 
-        })
+
+
+
+
+
+        )
+
     //Parte III. Función manejadora  de favoritos
-    function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. F
+    function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. 
 
-        const favouriteAnime = event.currentTarget.id;
-        console.log(favouriteAnime);
+        const favouriteSeries = parseInt(event.currentTarget.dataset.id); //
+        //const favouriteSeries = event.currentTarget.dataset.title //por si lo quiero hacer con data-title
+
+
+        //console.log(favouriteSeries);
+
+        let favourites = animeSeriesArray.find((serie) => serie.mal_id === favouriteSeries)
+        console.log(favourites)
+
+
+
+
+
+
+
+        //console.log(favouriteSeriesArray);
+        //console.dir(animeSeriesArray);
+
+
 
 
     }
-    function changeColorFavourite(event) { //Función para cambiar el color al seleccionado como favorita
+    function changeColorFavourite(event) { //Función para cambiar el color a la serie seleccionada como favorita
 
         const favouriteAnime = event.currentTarget;
         favouriteAnime.classList.toggle('favourite')
+        //console.log(event)
 
     }
+
+
+
     function globalFunction(event) { //Esta función es la que quiero uso en el listener "fav" para cambiar el color y mostrar el array con favoritos
 
         handleFavourites(event);
@@ -93,15 +120,8 @@ function fetchDataAnime() {
 
 
 
-
-    //Añado las series seleccionadas al array vacío que he creado
-    /*if (favouriteAnime.classList.contains('favourite')) {
-        favouriteSeriesArray.push(favouriteAnime);
-        console.log(favouriteSeriesArray);
-    }*/
-
-
 }
+
 
 
 
