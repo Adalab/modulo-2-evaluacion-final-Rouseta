@@ -77,16 +77,30 @@ function fetchDataAnime() {
         )
 
     //Parte III. Función manejadora  de favoritos
+
     function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. 
+        favouriteListOfAnimes.innerHTML = "";
 
         const favouriteSeries = parseInt(event.currentTarget.dataset.id); //
-        //const favouriteSeries = event.currentTarget.dataset.title //por si lo quiero hacer con data-title
-
-
-        //console.log(favouriteSeries);
-
         let favourites = animeSeriesArray.find((serie) => serie.mal_id === favouriteSeries)
-        console.log(favourites)
+
+
+        //Aquí hago un push para subirme los datos de let favourites (no sé si hacía falta)
+        favouriteSeriesArray.push(favourites);
+        console.log(favouriteSeriesArray);
+
+
+        //Ahora quiero pintar una lista con los favoritos. Que Dios reparta suerte! NO SALE TODAVÍA
+
+        for (let i = 0; i < favouriteSeriesArray.length; i++) {
+
+            const allFavourites = favouriteSeriesArray[i];
+            favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
+
+
+        }
+
+
 
 
 
