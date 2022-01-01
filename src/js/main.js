@@ -41,7 +41,7 @@ function fetchDataAnime() {
 
 
                     if (animeSerie.img_url === null) {
-                        searchResultList.innerHTML += `<article class="results data-id="${animeSerie.mal_id}"> <p><h3data-title="${animeSerie.title}" >${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
+                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3data-title="${animeSerie.title}" >${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
 
                     } else {
 
@@ -79,7 +79,7 @@ function fetchDataAnime() {
     //Parte III. Función manejadora  de favoritos
 
     function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. 
-        favouriteListOfAnimes.innerHTML = "";
+
 
         const favouriteSeries = parseInt(event.currentTarget.dataset.id); //
         let favourites = animeSeriesArray.find((serie) => serie.mal_id === favouriteSeries)
@@ -87,34 +87,23 @@ function fetchDataAnime() {
 
         //Aquí hago un push para subirme los datos de let favourites (no sé si hacía falta)
         favouriteSeriesArray.push(favourites);
-        console.log(favouriteSeriesArray);
+        //console.log(favouriteSeriesArray);
 
 
         //Ahora quiero pintar una lista con los favoritos. Que Dios reparta suerte! NO SALE TODAVÍA
-
+        favouriteListOfAnimes.innerHTML = "";
         for (let i = 0; i < favouriteSeriesArray.length; i++) {
-
-            const allFavourites = favouriteSeriesArray[i];
+            console.log(favouriteSeriesArray);
+            favouriteListOfAnimes.innerHTML += `<article > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
+            /*const allFavourites = favouriteSeriesArray[i]; Aquí la constante de AllFavourites me salían más de un resultado a pesar de hacer click en uno
             favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
+            console.log(allFavourites)*/
 
 
         }
-
-
-
-
-
-
-
-
-
-        //console.log(favouriteSeriesArray);
-        //console.dir(animeSeriesArray);
-
-
-
-
     }
+
+
     function changeColorFavourite(event) { //Función para cambiar el color a la serie seleccionada como favorita
 
         const favouriteAnime = event.currentTarget;

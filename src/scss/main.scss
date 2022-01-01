@@ -2,3 +2,8 @@
   color: white;
   background-color: black;
 }
+.searchresults {
+  &__favourites {
+    border-bottom: solid 2px black;
+  }
+}
