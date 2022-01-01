@@ -16,18 +16,26 @@
   }
   &__title {
     margin: 10px 15px;
+    color: lightblue;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-size: 30px;
   }
 }
 .button__input {
   margin: 20px 10px 20px 20px;
-
   height: 30px;
   width: 200px;
+  border-radius: 10px;
+  border: solid lightblue;
+  padding-left: 15px;
 }
 .button__search {
+  border: solid;
   border-radius: 10px;
   height: 30px;
   width: 60px;
+  color: #48aef0;
+  font-weight: bold;
   background-color: lightblue;
   transition: color ease 0.8s;
   &:hover {

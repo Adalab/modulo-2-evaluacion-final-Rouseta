@@ -87,7 +87,7 @@ function renderFavourites() {
     favouriteListOfAnimes.innerHTML = "";
     for (let i = 0; i < favouriteSeriesArray.length; i++) {
 
-        favouriteListOfAnimes.innerHTML += `<article > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
+        favouriteListOfAnimes.innerHTML += `<article class="results" > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
         /*const allFavourites = favouriteSeriesArray[i]; Aquí la constante de AllFavourites me salían más de un resultado a pesar de hacer click en uno
         favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
         console.log(allFavourites)*/
