@@ -58,72 +58,57 @@ function fetchDataAnime() {
                     for (const fav of favouriteSelector) {
                         fav.addEventListener('click', globalFunction)
                     }
-
-
-
-
-
-
                 }
 
 
         }
-
-
-
-
-
-
         )
 
-    //Parte III. Función manejadora  de favoritos
-
-    function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. 
+}
 
 
-        const favouriteSeries = parseInt(event.currentTarget.dataset.id); //
-        let favourites = animeSeriesArray.find((serie) => serie.mal_id === favouriteSeries)
+function changeColorFavourite(event) { //Función para cambiar el color a la serie seleccionada como favorita
 
-
-        //Aquí hago un push para subirme los datos de let favourites (no sé si hacía falta)
-        favouriteSeriesArray.push(favourites);
-        //console.log(favouriteSeriesArray);
-
-
-        //Ahora quiero pintar una lista con los favoritos. Que Dios reparta suerte! NO SALE TODAVÍA
-        favouriteListOfAnimes.innerHTML = "";
-        for (let i = 0; i < favouriteSeriesArray.length; i++) {
-            console.log(favouriteSeriesArray);
-            favouriteListOfAnimes.innerHTML += `<article > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
-            /*const allFavourites = favouriteSeriesArray[i]; Aquí la constante de AllFavourites me salían más de un resultado a pesar de hacer click en uno
-            favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
-            console.log(allFavourites)*/
-
-
-        }
-    }
-
-
-    function changeColorFavourite(event) { //Función para cambiar el color a la serie seleccionada como favorita
-
-        const favouriteAnime = event.currentTarget;
-        favouriteAnime.classList.toggle('favourite')
-        //console.log(event)
-
-    }
-
-
-
-    function globalFunction(event) { //Esta función es la que quiero uso en el listener "fav" para cambiar el color y mostrar el array con favoritos
-
-        handleFavourites(event);
-        changeColorFavourite(event);
-
-    }
-
-
+    const favouriteAnime = event.currentTarget;
+    favouriteAnime.classList.toggle('favourite')
+    //console.log(event)
 
 }
+function handleFavourites(event) { //Función para poder hacer un nuevo array con los ids de las series. 
+
+    const favouriteSeries = parseInt(event.currentTarget.dataset.id); //
+    let favourites = animeSeriesArray.find((serie) => serie.mal_id === favouriteSeries)
+    //Aquí hago un push para subirme los datos de let favourites (no sé si hacía falta)
+    favouriteSeriesArray.push(favourites);
+    //console.log(favouriteSeriesArray);
+}
+function renderFavourites() {
+    //Ahora quiero pintar una lista con los favoritos. Que Dios reparta suerte! NO SALE TODAVÍA
+    favouriteListOfAnimes.innerHTML = "";
+    for (let i = 0; i < favouriteSeriesArray.length; i++) {
+
+        favouriteListOfAnimes.innerHTML += `<article > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
+        /*const allFavourites = favouriteSeriesArray[i]; Aquí la constante de AllFavourites me salían más de un resultado a pesar de hacer click en uno
+        favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
+        console.log(allFavourites)*/
+
+
+    }
+}
+
+
+
+function globalFunction(event) { //Esta función es la que quiero uso en el listener "fav" para cambiar el color, mostrar el array con favoritos y pintar los favs
+
+    handleFavourites(event);
+    changeColorFavourite(event);
+    renderFavourites()
+
+}
+
+
+
+
 
 
 

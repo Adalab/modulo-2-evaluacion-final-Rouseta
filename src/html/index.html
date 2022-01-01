@@ -9,13 +9,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="icon" href="./assets/images/favicon.png" />
   </head>
 
-  <body>
+  <body class="main-anime">
     <main>
       <input
-        class="js-input"
+        class="js-input button__input"
         id="search"
         type="text"
         name="search"
@@ -23,13 +24,13 @@
       />
 
       <input
-        class="js-searchButton"
+        class="js-searchButton button__search"
         id="search"
         type="submit"
         name="Buscar"
         value="Buscar"
       />
-      <h2>Tus series favoritas</h2>
+      <h2 class="searchresults__title">Tus series favoritas</h2>
       <div class="searchresults__favourites"></div>
 
       <div class="searchresults"></div>
