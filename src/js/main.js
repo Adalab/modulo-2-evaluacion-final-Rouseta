@@ -41,11 +41,11 @@ function fetchDataAnime() {
 
 
                     if (animeSerie.img_url === null) {
-                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3data-title="${animeSerie.title}" >${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
+                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3 data-title="${animeSerie.title}class="searchresults__title--js" >${animeSerie.title}</h3></p><img class="image" src="${alternativeImage}"/></article>`
 
                     } else {
 
-                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3 data-title="${animeSerie.title}">${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
+                        searchResultList.innerHTML += `<article class="results" data-id="${animeSerie.mal_id}"> <p><h3 data-title="${animeSerie.title}" class= "searchresults__title--js">${animeSerie.title}</h3></p><img class="image" src="${animeSerie.image_url}"/></article>`
                     }
 
 
@@ -87,14 +87,25 @@ function renderFavourites() {
     favouriteListOfAnimes.innerHTML = "";
     for (let i = 0; i < favouriteSeriesArray.length; i++) {
 
-        favouriteListOfAnimes.innerHTML += `<article class="results" > <p><h3>${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
-        /*const allFavourites = favouriteSeriesArray[i]; Aquí la constante de AllFavourites me salían más de un resultado a pesar de hacer click en uno
-        favouriteListOfAnimes.innerHTML += `<article class="results > <p><h3>${allFavourites.title}</h3></p><img class="image" src="${allFavourites.image_url}"/></article>`
-        console.log(allFavourites)*/
+        favouriteListOfAnimes.innerHTML += `<article class="results" > <p><h3 class= "searchresults__title">${favouriteSeriesArray[i].title}</h3></p><img class="image" src="${favouriteSeriesArray[i].image_url}"/></article>`
+
 
 
     }
 }
+function deleteFavourites() { //Con esta funcion quito la clase de favoritos y se va el color, pero se me sige agregando a la lista de favoritos
+    for (let i = 0; i < favouriteSeriesArray; i++) {
+
+
+        if (favouriteSeriesArray[i].contains('favourite')) {
+            favouriteSeriesArray[i].classList.remove('favourite');
+
+        }
+    }
+}
+
+
+
 
 
 
@@ -103,6 +114,8 @@ function globalFunction(event) { //Esta función es la que quiero uso en el list
     handleFavourites(event);
     changeColorFavourite(event);
     renderFavourites()
+    deleteFavourites()
+
 
 }
 
