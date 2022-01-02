@@ -63,7 +63,7 @@ function handleFavourites(event) {
     //Función para poder hacer un nuevo array con los ids de las series y subirlos a favoritos
 
     const favouriteSeries = parseInt(event.currentTarget.dataset.id);
-    let favouriteIndex = favouriteSeriesArray.findIndex(
+    let favouriteIndex = favouriteSeriesArray.findIndex( //para saber si hay coincidencia o no
         (serie) => serie.mal_id === favouriteSeries
     );
 
