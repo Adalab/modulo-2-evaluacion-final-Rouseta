@@ -3,7 +3,7 @@
 //Traigo del HTML
 
 let input = document.querySelector(".js-input");
-const searchform = document.querySelector(".form_search");
+const searchForm = document.querySelector(".form_search");
 let searchResultList = document.querySelector(".searchresults");
 const favouriteSelector = document.querySelectorAll(".results"); //parte 3
 const favouriteListOfAnimes = document.querySelector(
@@ -123,7 +123,7 @@ function globalFunction(event) {
 
 //Listeners
 
-searchform.addEventListener("submit", fetchDataAnime);
+searchForm.addEventListener("submit", fetchDataAnime);
 resetButton.addEventListener("click", resetAll);
 
 getStorageData();
