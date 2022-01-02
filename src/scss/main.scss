@@ -3,6 +3,8 @@
   background-size: cover;
 
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .favourite {
@@ -13,19 +15,27 @@
   &__favourites {
     border-bottom: dashed 5px lightblue;
     border-top: dashed 5px lightblue;
+    padding: 1rem;
   }
   &__title {
     margin: 10px 15px;
     color: lightblue;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 30px;
-    &--js {
-      color: gold;
-      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-      font-size: 25px;
+  }
+
+  .results {
+    color: gold;
+    font-size: 25px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    padding: 1.2rem 1rem 1rem;
+
+    &.favourite {
+      color: #48aef0;
     }
   }
 }
+
 .button__input {
   margin: 20px 10px 20px 20px;
   height: 30px;
@@ -34,7 +44,8 @@
   border: solid lightblue;
   padding-left: 15px;
 }
-.button__search {
+.button__search,
+.button__reset {
   border: solid;
   border-radius: 10px;
   height: 30px;
@@ -47,6 +58,31 @@
     background-color: white;
   }
 }
-.results {
-  margin-left: 15px;
-}
+
+// .header {
+//   .title {
+//   }
+//   form {
+//     .formcontrol {
+//       input {
+//       }
+//     }
+//     .buttons {
+//       input {
+//       }
+//       button {
+//       }
+//     }
+//   }
+// }
+
+// .main {
+//   .aside {
+//     h2 {
+//     }
+//     .aside_body {
+//     }
+//   }
+//   .results {
+//   }
+// }
