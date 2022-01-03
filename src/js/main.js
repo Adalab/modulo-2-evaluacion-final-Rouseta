@@ -6,9 +6,7 @@ let input = document.querySelector(".js-input");
 const searchForm = document.querySelector(".form_search");
 let searchResultList = document.querySelector(".searchresults");
 const favouriteSelector = document.querySelectorAll(".results"); //parte 3
-const favouriteListOfAnimes = document.querySelector(
-    ".searchresults__favourites"
-);
+const favouriteListOfAnimes = document.querySelector(".searchresults__favourites");
 const resetButton = document.querySelector(".js-btn-reset");
 const alternativeImage =
     "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
@@ -89,10 +87,10 @@ function renderFavourites() {
         </article>`;
     }
 }
-//Con esta función quiero borrar favoritos de mi lista de favoritos NO FUNCIONA: sobreescribe y no elimina y de index sale -1 por el parent.Node
+
 
 function deleteFavourites() {
-    //Con esta funcion quito la clase de favoritos y se va el color, pero se me sige agregando a la lista de favoritos
+    //Con esta función quito la clase de favoritos y se va el color.
     for (let i = 0; i < favouriteSeriesArray; i++) {
         if (favouriteSeriesArray[i].contains("favourite")) {
             favouriteSeriesArray[i].classList.remove("favourite");
@@ -118,7 +116,7 @@ function globalFunction(event) {
     changeColorFavourite(event);
     renderFavourites();
     deleteFavourites();
-    // removeFromFavourites(event);
+
 }
 
 //Listeners
