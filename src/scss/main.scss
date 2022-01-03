@@ -6,10 +6,11 @@
   background-attachment: fixed;
   min-height: 100vh;
   .mainTitle {
-    color: pink;
+    color: rgb(248, 172, 185);
     padding: 15px 15px;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     text-align: center;
+    font-size: 50px;
   }
 
   .mainDiv {
@@ -22,7 +23,7 @@
 
 .favourite {
   color: #48aef0;
-  background-color: pink;
+  background-color: rgb(248, 172, 185);
 }
 
 .searchresults {
@@ -35,18 +36,17 @@
   }
   &__title {
     margin: 10px 15px;
-    color: pink;
+    color: rgb(248, 172, 185);
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 30px;
   }
 
   .results {
-    color: pink;
+    color: rgb(248, 172, 185);
     font-size: 25px;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     padding: 1.2rem 1rem 1rem;
-
-    &.favourite {
+    border &.favourite {
       color: #48aef0;
     }
   }
@@ -57,13 +57,13 @@
   height: 30px;
   width: 200px;
   border-radius: 10px;
-  border: solid pink;
+  border: solid rgb(248, 172, 185);
   padding-left: 15px;
 }
 .button__search,
 .button__reset,
 .deleteOneBtn {
-  border: solid pink;
+  border: solid rgb(248, 172, 185);
   margin-left: 10px;
   border-radius: 10px;
   height: 30px;
@@ -75,4 +75,8 @@
   &:hover {
     background-color: white;
   }
+}
+.titleFavourites,
+.titleResults {
+  text-decoration: underline;
 }
