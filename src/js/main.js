@@ -94,12 +94,12 @@ function renderFavourites() {
             <img class="image" src="${favouriteSeriesArray[i].image_url}"/>
         </article> 
         <div>
-            <button class="testing"data-id="${favouriteSeriesArray[i].mal_id}">Quitar</button>
+            <button class="deleteOneBtn"data-id="${favouriteSeriesArray[i].mal_id}">Quitar</button>
         </div>
         `;
     }
-    //Listener al botón x
-    const xButtons = document.querySelectorAll(".testing");
+    //Listener al botón x que borra el favorito seleccionado
+    const xButtons = document.querySelectorAll(".deleteOneBtn");
     for (const xButton of xButtons) {
         xButton.addEventListener("click", resetOne);
     }

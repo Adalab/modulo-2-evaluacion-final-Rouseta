@@ -6,31 +6,42 @@
   background-attachment: fixed;
   min-height: 100vh;
   .mainTitle {
-    color: gold;
+    color: pink;
     padding: 15px 15px;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    text-align: center;
+  }
+
+  .mainDiv {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 
 .favourite {
   color: #48aef0;
-  background-color: gold;
+  background-color: pink;
 }
+
 .searchresults {
   &__favourites {
-    border-bottom: dashed 5px lightblue;
-    border-top: dashed 5px lightblue;
     padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   &__title {
     margin: 10px 15px;
-    color: gold;
+    color: pink;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 30px;
   }
 
   .results {
-    color: gold;
+    color: pink;
     font-size: 25px;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     padding: 1.2rem 1rem 1rem;
@@ -46,12 +57,13 @@
   height: 30px;
   width: 200px;
   border-radius: 10px;
-  border: solid gold;
+  border: solid pink;
   padding-left: 15px;
 }
 .button__search,
-.button__reset {
-  border: solid gold;
+.button__reset,
+.deleteOneBtn {
+  border: solid pink;
   margin-left: 10px;
   border-radius: 10px;
   height: 30px;
