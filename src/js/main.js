@@ -1,12 +1,14 @@
 "use strict";
 
-//Traigo del HTML
+//Traigo del HTML. Variables globales
 
 let input = document.querySelector(".js-input");
 const searchForm = document.querySelector(".form_search");
 let searchResultList = document.querySelector(".searchresults");
 const favouriteSelector = document.querySelectorAll(".results"); //parte 3
-const favouriteListOfAnimes = document.querySelector(".searchresults__favourites");
+const favouriteListOfAnimes = document.querySelector(
+    ".searchresults__favourites"
+);
 const resetButton = document.querySelector(".js-btn-reset");
 const alternativeImage =
     "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
@@ -14,9 +16,9 @@ let userInput = "";
 let animeSeriesArray = [];
 let favouriteSeriesArray = [];
 
-//Empezamos con el fetch... Partes I y II
+//Empezamos con el fetch
 function fetchDataAnime(event) {
-    event.preventDefault()
+    event.preventDefault();
     searchResultList.innerHTML = "";
 
     fetch(`https://api.jikan.moe/v3/search/anime?q=${input.value}`)
@@ -32,19 +34,23 @@ function fetchDataAnime(event) {
                     const animeSerie = animeSeriesArray[i];
                     searchResultList.innerHTML += `
                         <article class="results" data-id="${animeSerie.mal_id}">
-                            <h3 data-title="${animeSerie.title} class="searchresults__title--js" >
+                            <h3 data-title="${animeSerie.title
+                        } class="searchresults__title--js" >
                                 ${animeSerie.title}
                             </h3>
-                            <img class="image" src="${animeSerie.image_url || alternativeImage}"/>
+                            <img class="image" src="${animeSerie.image_url || alternativeImage
+                        }"/>
+                            
+                          
                         </article>
                     `;
 
-
-                    //Parte III Añado Listener al article de resultados
+                    // Añado Listener al article de resultados
                     const favouriteSelector = document.querySelectorAll(".results");
                     for (const fav of favouriteSelector) {
                         fav.addEventListener("click", globalFunction);
                     }
+
                 }
         });
 }
@@ -54,14 +60,14 @@ function changeColorFavourite(event) {
 
     const favouriteAnime = event.currentTarget;
     favouriteAnime.classList.toggle("favourite");
-    //console.log(event)
 }
 
 function handleFavourites(event) {
     //Función para poder hacer un nuevo array con los ids de las series y subirlos a favoritos
 
     const favouriteSeries = parseInt(event.currentTarget.dataset.id);
-    let favouriteIndex = favouriteSeriesArray.findIndex( //para saber si hay coincidencia o no
+    let favouriteIndex = favouriteSeriesArray.findIndex(
+        //para encontart mis favoritos en el  array de resultados y subir mis favoritos a un nuevo array
         (serie) => serie.mal_id === favouriteSeries
     );
 
@@ -73,6 +79,7 @@ function handleFavourites(event) {
         );
         favouriteSeriesArray.push(searchAnimeObject);
     }
+    //Guardo mis favoritos en el almacenamiento local
     localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
 }
 
@@ -84,13 +91,21 @@ function renderFavourites() {
         <article class="results">
             <h3 class= "searchresults__title">${favouriteSeriesArray[i].title}</h3>
             <img class="image" src="${favouriteSeriesArray[i].image_url}"/>
-        </article>`;
+        </article> 
+        <div>
+            <button class="testing"data-id="${favouriteSeriesArray[i].mal_id}">X</button>
+        </div>
+        `;
+    }
+    //Listener al botón x
+    const xButtons = document.querySelectorAll(".testing");
+    for (const xButton of xButtons) {
+        xButton.addEventListener("click", resetOne);
     }
 }
 
-
 function deleteFavourites() {
-    //Con esta función quito la clase de favoritos y se va el color.
+    //Con esta función quito la clase de favoritos y se intercambia el color del título y fondo.
     for (let i = 0; i < favouriteSeriesArray; i++) {
         if (favouriteSeriesArray[i].contains("favourite")) {
             favouriteSeriesArray[i].classList.remove("favourite");
@@ -98,6 +113,7 @@ function deleteFavourites() {
     }
 }
 function getStorageData() {
+    //Recupero los datos guardados
     const seriesStoraged = JSON.parse(localStorage.getItem("favourites"));
     if (seriesStoraged !== null) {
         favouriteSeriesArray = seriesStoraged;
@@ -105,10 +121,29 @@ function getStorageData() {
     renderFavourites();
 }
 function resetAll() {
+    //Borrar todos los favoritos
     localStorage.removeItem("favourites");
     favouriteSeriesArray = [];
     renderFavourites();
 }
+function resetOne(event) {
+    //Borrar un favorito
+
+    const deletedSeries = parseInt(event.currentTarget.dataset.id);
+    let deletedIndex = favouriteSeriesArray.findIndex(
+
+        (deleted) => deleted.mal_id === deletedSeries
+    );
+    if (deletedIndex >= 0) {
+        favouriteSeriesArray.splice(deletedIndex);
+    }
+
+    localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
+
+    renderFavourites();
+}
+
+
 
 function globalFunction(event) {
     //Esta función es la que quiero uso en el listener "fav" para cambiar el color, mostrar el array con favoritos y pintar los favs
@@ -116,7 +151,6 @@ function globalFunction(event) {
     changeColorFavourite(event);
     renderFavourites();
     deleteFavourites();
-
 }
 
 //Listeners
@@ -125,3 +159,4 @@ searchForm.addEventListener("submit", fetchDataAnime);
 resetButton.addEventListener("click", resetAll);
 
 getStorageData();
+

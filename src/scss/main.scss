@@ -5,6 +5,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
+  .mainTitle {
+    color: gold;
+    padding: 15px 15px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
 }
 
 .favourite {
@@ -19,7 +24,7 @@
   }
   &__title {
     margin: 10px 15px;
-    color: lightblue;
+    color: gold;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 30px;
   }
@@ -41,12 +46,13 @@
   height: 30px;
   width: 200px;
   border-radius: 10px;
-  border: solid lightblue;
+  border: solid gold;
   padding-left: 15px;
 }
 .button__search,
 .button__reset {
-  border: solid;
+  border: solid gold;
+  margin-left: 10px;
   border-radius: 10px;
   height: 30px;
   width: 60px;

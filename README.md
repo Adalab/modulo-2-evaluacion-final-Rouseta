@@ -33,7 +33,7 @@ Hay que almacenar los datos en localSorage para que cuando se recarge la página
 ### Bonus. Parte V. Borrar favoritos
 
 1. Borrar una serie al hacer click sobre un botón de cierre tanto de la lista como del Localstorage.
-2. Añadir y quitar como favoritos al hacer clic sobre una serie al lado de la derecha (Esto no lo he logrado).
+2. Añadir y quitar como favoritos al hacer clic sobre una serie al lado de la derecha.
 3. Botón de reset para borrar todos los favoritos.
 
 ### Bonus. Parte VI. Afinar la maquetación
