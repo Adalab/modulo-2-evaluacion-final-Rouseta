@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rosa Donoso Requena</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="icon" href="./assets/images/GhostInTheShell.png" />
+  </head>
+
+  <body class="main-anime">
+    <header>
+      <h1 class="mainTitle">Anime Finder</h1>
+    </header>
+    <main>
+      <form class="form_search">
+        <input
+          class="js-input button__input"
+          id="search"
+          type="text"
+          name="search"
+          placeholder="Introduce aquí tu búsqueda"
+        />
+
+        <input
+          class="js-searchButton button__search"
+          id="search"
+          type="submit"
+          name="Buscar"
+          value="Buscar"
+        />
+        <button class="js-btn-reset button__reset">Reset</button>
+      </form>
+
+      <h2 class="searchresults__title">Tus series favoritas</h2>
+      <div class="searchresults__favourites"></div>
+
+      <div class="searchresults"></div>
+    </main>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
