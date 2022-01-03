@@ -25,7 +25,7 @@ function fetchDataAnime(event) {
         .then((response) => response.json())
         .then((dataAnime) => {
             animeSeriesArray = dataAnime.results;
-            //console.log(animeSeriesArray);
+
 
             if (animeSeriesArray.length === 0) {
                 searchResultList.innerHTML += `<p class="paragraph">No existe este título. Prueba con otro</p>`;
@@ -86,6 +86,7 @@ function handleFavourites(event) {
 function renderFavourites() {
     //Ahora quiero pintar una lista con los favoritos.
     favouriteListOfAnimes.innerHTML = "";
+
     for (let i = 0; i < favouriteSeriesArray.length; i++) {
         favouriteListOfAnimes.innerHTML += `
         <article class="results">
@@ -93,7 +94,7 @@ function renderFavourites() {
             <img class="image" src="${favouriteSeriesArray[i].image_url}"/>
         </article> 
         <div>
-            <button class="testing"data-id="${favouriteSeriesArray[i].mal_id}">X</button>
+            <button class="testing"data-id="${favouriteSeriesArray[i].mal_id}">Quitar</button>
         </div>
         `;
     }
@@ -132,10 +133,12 @@ function resetOne(event) {
     const deletedSeries = parseInt(event.currentTarget.dataset.id);
     let deletedIndex = favouriteSeriesArray.findIndex(
 
+
         (deleted) => deleted.mal_id === deletedSeries
     );
+
     if (deletedIndex >= 0) {
-        favouriteSeriesArray.splice(deletedIndex);
+        favouriteSeriesArray.splice(deletedIndex, 1);
     }
 
     localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
