@@ -19,7 +19,7 @@ let favouriteSeriesArray = [];
 //Empezamos con el fetch
 function fetchDataAnime(event) {
     event.preventDefault();
-    searchResultList.innerHTML = "";
+    //searchResultList.innerHTML = "";
 
     fetch(`https://api.jikan.moe/v3/search/anime?q=${input.value}`)
         .then((response) => response.json())
@@ -28,11 +28,6 @@ function fetchDataAnime(event) {
 
             renderResults();
 
-            // Añado Listener al article de resultados
-            const favouriteSelector = document.querySelectorAll(".results");
-            for (const fav of favouriteSelector) {
-                fav.addEventListener("click", globalFunction);
-            }
 
 
         });
@@ -41,25 +36,60 @@ function fetchDataAnime(event) {
 //Funciones
 
 function renderResults() {
+
     //Función que pinta los resultados de la búsqueda
+    searchResultList.innerHTML = "";
+
     if (animeSeriesArray.length === 0) {
         searchResultList.innerHTML += `<p class="paragraph">No existe este título. Prueba con otro</p>`;
-    } else
-        for (let i = 0; i < animeSeriesArray.length; i++) {
+    } else {
+        for (let i = 0; i < animeSeriesArray.length; i++) {//Recorro el array
             const animeSerie = animeSeriesArray[i];
-            searchResultList.innerHTML += `
+
+            //Esto se hace para ver si está o no está en mis favoritos guardados, se recorre el array de favouriteSeriesArray
+            let favouriteIndex = favouriteSeriesArray.findIndex(
+                (serie) => serie.mal_id === animeSerie.mal_id
+            );
+
+
+            // Si están  se  pinta en la lista de resultados, el resultado con la bubble( que es la clase .favourite)
+            if (favouriteIndex >= 0) {
+                searchResultList.innerHTML += `
+                <article class="results favourite" data-id="${animeSerie.mal_id}">
+                    <h3 data-title="${animeSerie.title
+                    } class="searchresults__title--js" >
+                        ${animeSerie.title}
+                    </h3>
+                    <img class="image" src="${animeSerie.image_url || alternativeImage
+                    }"/>
+                    
+                  
+                </article>
+            `;
+            }
+            //Si no están, se pinta la lista "normal" sin clase porque no han sido marcadas como favoritas
+            else {
+                searchResultList.innerHTML += `
             <article class="results" data-id="${animeSerie.mal_id}">
                 <h3 data-title="${animeSerie.title
-                } class="searchresults__title--js" >
+                    } class="searchresults__title--js" >
                     ${animeSerie.title}
                 </h3>
                 <img class="image" src="${animeSerie.image_url || alternativeImage
-                }"/>
+                    }"/>
                 
               
             </article>
         `;
+            }
         }
+
+        // Añado Listener al article de resultados dentro de la función
+        const favouriteSelector = document.querySelectorAll(".results");
+        for (const fav of favouriteSelector) {
+            fav.addEventListener("click", globalFunction);
+        }
+    }
 }
 
 function changeColorFavourite(event) {
@@ -71,23 +101,27 @@ function changeColorFavourite(event) {
 
 function handleFavourites(event) {
     //Función para poder hacer un nuevo array con los ids de las series y subirlos a favoritos
+    //Hacemos findIndex para ver si la serie marcada con el event está ya en mi array de favoritos (favouriteSeriesArray)
 
     const favouriteSeries = parseInt(event.currentTarget.dataset.id);
     let favouriteIndex = favouriteSeriesArray.findIndex(
-        //para encontart mis favoritos en el  array de resultados y subir mis favoritos a un nuevo array
+
         (serie) => serie.mal_id === favouriteSeries
     );
 
-    if (favouriteIndex >= 0) {
+    if (favouriteIndex >= 0) { //Si coincide que el elemento clickado está en el array, entonces lo corto
         favouriteSeriesArray.splice(favouriteIndex, 1);
     } else {
+        //Si no coincide, es que no está guardado en mi array y lo quiero guardar con push. Ahora ahago un find porque necesito buscar el objeto para pintarlo
         const searchAnimeObject = animeSeriesArray.find(
             (serie) => serie.mal_id === favouriteSeries
         );
         favouriteSeriesArray.push(searchAnimeObject);
     }
     //Guardo mis favoritos en el almacenamiento local
-    localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
+    saveData()
+
+
 }
 
 function renderFavourites() {
@@ -105,6 +139,8 @@ function renderFavourites() {
         </div>
         `;
     }
+
+
 
 
     //Listener al botón x que borra el favorito seleccionado
@@ -155,6 +191,7 @@ function resetOne(event) {
     localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
 
     renderFavourites();
+    renderResults()
 }
 
 
@@ -165,7 +202,11 @@ function globalFunction(event) {
     handleFavourites(event);
     changeColorFavourite(event);
     renderFavourites();
+    renderResults()
     deleteFavourites();
+}
+function saveData() {
+    localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
 }
 
 //Listeners
