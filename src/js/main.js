@@ -25,9 +25,12 @@ function fetchDataAnime(event) {
         .then((dataAnime) => {
             animeSeriesArray = dataAnime.results;
 
+
             renderResults();
         });
+
 }
+
 
 //Funciones
 
@@ -47,21 +50,23 @@ function renderResults() {
                 (serie) => serie.mal_id === animeSerie.mal_id
             );
 
+
+
             // Si están  se  pinta en la lista de resultados, el resultado con la bubble( que es la clase .favourite)
             if (favouriteIndex >= 0) {
                 searchResultList.innerHTML += `
-                <article class="results favourite" data-id="${animeSerie.mal_id
+            <article class="results favourite" data-id="${animeSerie.mal_id
                     }">
-                    <h3 data-title="${animeSerie.title
+                <h3 data-title="${animeSerie.title
                     } class="searchresults__title--js" >
-                        ${animeSerie.title}
-                    </h3>
-                    <img class="image" src="${animeSerie.image_url || alternativeImage
+                    ${animeSerie.title}
+                </h3>
+                <img class="image" src="${animeSerie.image_url || alternativeImage
                     }"/>
-                    
-                  
-                </article>
-            `;
+
+
+            </article>
+        `;
             }
             //Si no están, se pinta la lista "normal" sin clase porque no han sido marcadas como favoritas
             else {
@@ -73,10 +78,11 @@ function renderResults() {
                 </h3>
                 <img class="image" src="${animeSerie.image_url || alternativeImage
                     }"/>
-                
-              
+
+
             </article>
-        `;
+         `;
+
             }
         }
 
@@ -87,6 +93,7 @@ function renderResults() {
         }
     }
 }
+
 
 function changeColorFavourite(event) {
     //Función para cambiar el color a la serie seleccionada como favorita
@@ -114,9 +121,21 @@ function handleFavourites(event) {
         );
         favouriteSeriesArray.push(searchAnimeObject);
     }
-    //Guardo mis favoritos en el almacenamiento local
-    saveData();
+
+
+
+
+
+
+
 }
+//Guardo mis favoritos en el almacenamiento local
+saveData();
+
+
+
+
+
 
 function renderFavourites() {
     //Ahora quiero pintar una lista con los favoritos.
@@ -159,10 +178,16 @@ function getStorageData() {
     renderFavourites();
 }
 function resetAll() {
-    //Borrar todos los favoritos
+    //Borrar todos los favoritos //Dudas, quiero borrar también todos los resultados de búsqueda, pero no me deja
     localStorage.removeItem("favourites");
+
+    // animeSeriesArray = [];
+    // searchResultList.innerHTML = "";
+    // renderResults();
     favouriteSeriesArray = [];
     renderFavourites();
+
+
 }
 function resetOne(event) {
     //Borrar un favorito
@@ -181,9 +206,10 @@ function resetOne(event) {
     saveData();
     //Llamo a la función render Favourites para pintar la lista  actualizada
     renderFavourites();
-    //LLamo a la función de renderResults para pintar la lsita de resultados actualizada (para que se borre la bubble)
+    //LLamo a la función de renderResults para pintar la lita de resultados actualizada (para que se borre la bubble)
     renderResults();
 }
+
 
 function globalFunction(event) {
     //Esta función es la que quiero uso en el listener "fav" para cambiar el color, mostrar el array con favoritos y pintar los favs
