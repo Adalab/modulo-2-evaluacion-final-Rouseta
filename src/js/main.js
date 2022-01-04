@@ -26,33 +26,40 @@ function fetchDataAnime(event) {
         .then((dataAnime) => {
             animeSeriesArray = dataAnime.results;
 
+            renderResults();
 
-            if (animeSeriesArray.length === 0) {
-                searchResultList.innerHTML += `<p class="paragraph">No existe este título. Prueba con otro</p>`;
-            } else
-                for (let i = 0; i < animeSeriesArray.length; i++) {
-                    const animeSerie = animeSeriesArray[i];
-                    searchResultList.innerHTML += `
-                        <article class="results" data-id="${animeSerie.mal_id}">
-                            <h3 data-title="${animeSerie.title
-                        } class="searchresults__title--js" >
-                                ${animeSerie.title}
-                            </h3>
-                            <img class="image" src="${animeSerie.image_url || alternativeImage
-                        }"/>
-                            
-                          
-                        </article>
-                    `;
+            // Añado Listener al article de resultados
+            const favouriteSelector = document.querySelectorAll(".results");
+            for (const fav of favouriteSelector) {
+                fav.addEventListener("click", globalFunction);
+            }
 
-                    // Añado Listener al article de resultados
-                    const favouriteSelector = document.querySelectorAll(".results");
-                    for (const fav of favouriteSelector) {
-                        fav.addEventListener("click", globalFunction);
-                    }
 
-                }
         });
+}
+
+//Funciones
+
+function renderResults() {
+    //Función que pinta los resultados de la búsqueda
+    if (animeSeriesArray.length === 0) {
+        searchResultList.innerHTML += `<p class="paragraph">No existe este título. Prueba con otro</p>`;
+    } else
+        for (let i = 0; i < animeSeriesArray.length; i++) {
+            const animeSerie = animeSeriesArray[i];
+            searchResultList.innerHTML += `
+            <article class="results" data-id="${animeSerie.mal_id}">
+                <h3 data-title="${animeSerie.title
+                } class="searchresults__title--js" >
+                    ${animeSerie.title}
+                </h3>
+                <img class="image" src="${animeSerie.image_url || alternativeImage
+                }"/>
+                
+              
+            </article>
+        `;
+        }
 }
 
 function changeColorFavourite(event) {
@@ -98,12 +105,15 @@ function renderFavourites() {
         </div>
         `;
     }
+
+
     //Listener al botón x que borra el favorito seleccionado
     const xButtons = document.querySelectorAll(".deleteOneBtn");
     for (const xButton of xButtons) {
         xButton.addEventListener("click", resetOne);
     }
 }
+
 
 function deleteFavourites() {
     //Con esta función quito la clase de favoritos y se intercambia el color del título y fondo.
@@ -113,6 +123,7 @@ function deleteFavourites() {
         }
     }
 }
+
 function getStorageData() {
     //Recupero los datos guardados
     const seriesStoraged = JSON.parse(localStorage.getItem("favourites"));
@@ -145,6 +156,7 @@ function resetOne(event) {
 
     renderFavourites();
 }
+
 
 
 
