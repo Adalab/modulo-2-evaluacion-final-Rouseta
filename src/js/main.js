@@ -5,14 +5,14 @@
 let input = document.querySelector(".js-input");
 const searchForm = document.querySelector(".form_search");
 let searchResultList = document.querySelector(".searchresults");
-const favouriteSelector = document.querySelectorAll(".results"); //parte 3
+const favouriteSelector = document.querySelectorAll(".results");
 const favouriteListOfAnimes = document.querySelector(
     ".searchresults__favourites"
 );
 const resetButton = document.querySelector(".js-btn-reset");
 const alternativeImage =
     "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
-let userInput = "";
+//let userInput = "";
 let animeSeriesArray = [];
 let favouriteSeriesArray = [];
 
