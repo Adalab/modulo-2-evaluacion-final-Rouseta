@@ -10,6 +10,8 @@ const favouriteListOfAnimes = document.querySelector(
     ".searchresults__favourites"
 );
 const resetButton = document.querySelector(".js-btn-reset");
+const logButton = document.querySelector(".js-btn-log");
+
 const alternativeImage =
     "https://via.placeholder.com/210x295/ffffff/666666/?text=TV";
 //let userInput = "";
@@ -27,6 +29,9 @@ function fetchDataAnime(event) {
 
 
             renderResults();
+
+
+
         });
 
 }
@@ -61,6 +66,7 @@ function renderResults() {
                     } class="searchresults__title--js" >
                     ${animeSerie.title}
                 </h3>
+                
                 <img class="image" src="${animeSerie.image_url || alternativeImage
                     }"/>
 
@@ -76,6 +82,7 @@ function renderResults() {
                     } class="searchresults__title--js" >
                     ${animeSerie.title}
                 </h3>
+                <p>Número de episodios ${animeSerie.episodes}</p>
                 <img class="image" src="${animeSerie.image_url || alternativeImage
                     }"/>
 
@@ -223,9 +230,23 @@ function saveData() {
     localStorage.setItem("favourites", JSON.stringify(favouriteSeriesArray));
 }
 
+function loggin(event) {
+    event.preventDefault();
+    for (let i = 0; i < animeSeriesArray.length; i++) {
+
+        animeSeriesArray[i];
+        console.log(animeSeriesArray[i].title)
+
+    }
+}
+
 //Listeners
 
 searchForm.addEventListener("submit", fetchDataAnime);
 resetButton.addEventListener("click", resetAll);
+logButton.addEventListener("click", loggin);
 
 getStorageData();
+
+
+
