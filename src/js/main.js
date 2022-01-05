@@ -212,7 +212,7 @@ function resetOne(event) {
 
 
 function globalFunction(event) {
-    //Esta función es la que quiero uso en el listener "fav" para cambiar el color, mostrar el array con favoritos y pintar los favs
+    //Esta función es la que quiero uso en el listener "fav" para cambiar el color, mostrar el array con favoritos, pintar los favs y los resultados de la búsqueda
     handleFavourites(event);
     changeColorFavourite(event);
     renderFavourites();
